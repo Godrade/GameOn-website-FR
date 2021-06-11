@@ -56,25 +56,31 @@
         <div class="content">
             <span class="close"></span>
             <div class="modal-body">
-                <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+                <h2 id="success"></h2>
+                <form id="form" name="reserve" action="index.html" method="get">
                     <div class="formData">
                         <label>Prénom</label><br>
-                        <input class="text-control" type="text" id="first" name="first" minlength="2"/><br>
+                        <input class="text-control" type="text" id="first" name="first" minlength="2"/>
+                        <span class="text-error" id="first-error"></span><br>
                     </div>
                     <div class="formData"><label>Nom</label><br>
-                        <input class="text-control" type="text" id="last" name="last"/><br>
+                        <input class="text-control" type="text" id="last" name="last"/>
+                        <span class="text-error" id="last-error"></span><br>
                     </div>
                     <div class="formData">
                         <label>E-mail</label><br>
-                        <input class="text-control" type="email" id="email" name="email"/><br>
+                        <input class="text-control" type="email" id="email" name="email"/>
+                        <span class="text-error" id="email-error"></span><br>
                     </div>
                     <div class="formData">
                         <label>Date de naissance</label><br>
-                        <input class="text-control" type="date" id="birthdate" name="birthdate"/><br>
+                        <input class="text-control" type="date" id="birthdate" name="birthdate"/>
+                        <span class="text-error" id="birthdate-error"></span><br>
                     </div>
                     <div class="formData">
                         <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                         <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                        <span class="text-error" id="quantity-error"></span><br>
                     </div>
                     <p class="text-label">Quelles villes ?</p>
                     <div class="formData">
@@ -109,6 +115,7 @@
                             <span class="checkbox-icon"></span>
                             Portland
                         </label>
+                        <br><span class="text-error" id="location-error"></span>
                     </div>
                     <div class="formData">
                         <input class="checkbox-input" type="checkbox" id="checkbox1" name="cgu" checked/>
@@ -116,6 +123,7 @@
                             <span class="checkbox-icon"></span>
                             J'ai lu et accepté les conditions d'utilisation.
                         </label>
+                        <br><span class="text-error" id="cgu-error"></span>
                         <br>
                         <input class="checkbox-input" type="checkbox" id="checkbox2" name="newsletter"/>
                         <label class="checkbox2-label" for="checkbox2">

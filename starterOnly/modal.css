@@ -21,6 +21,11 @@ body {
   margin: 0 auto;
 }
 
+.text-error {
+  color: #f74848;
+  font-size: 0.5em;
+}
+
 p {
   margin-bottom: 0;
   padding: 0.5vw;
@@ -68,15 +73,13 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
   }
-}
 
-@media screen and (max-width: 768px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
@@ -90,6 +93,12 @@ img {
   }
 }
 
+
+@media screen and (max-width: 1105px) {
+  .topnav a {
+    font-size: 17px;
+  }
+}
 
 
  @media screen and (max-width: 540px) {

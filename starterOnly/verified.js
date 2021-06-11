@@ -1,6 +1,6 @@
 //Création de la class
 class Form {
-    $number;
+    $error;
 
     constructor() {
         this.form = document.querySelector('form');
@@ -9,10 +9,9 @@ class Form {
         this.last = this.form.elements.last.value.trim();
         this.email = this.form.elements.email.value;
         this.birthdate = this.form.elements.birthdate.value;
-        this.quantity = parseInt(this.form.elements.quantity.value);
+        this.quantity = Number(this.form.elements.quantity.value);
         this.location = this.form.elements.location.value;
         this.cgu = this.form.elements.cgu.checked;
-        this.newsletter = this.form.elements.newsletter.checked;
 
         //Regex
         this.emailRegex = new RegExp(/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/);
@@ -20,72 +19,60 @@ class Form {
     }
 
     verifiedElements() {
-        this.$number = 0;
-        console.log("------------")
+        this.$error = false;
+        // Boucle de reset error
         //PRENOM
-        if (this.first.length > 2) {
-            console.log("PRENOM OK");
-            this.$number++;
-        } else {
-            console.warn("PRENOM NO OK");
+        if (this.first.length < 2) {
+            this.$error = true;
+            document.getElementById('first').style.borderColor = "red";
+            document.getElementById('first-error').textContent = "Veuillez entrer 2 caractères ou plus pour le champ du Prénom.";
         }
 
         //NOM
-        if (this.last.length > 2) {
-            console.log("NOM OK");
-            this.$number++;
-        } else {
-            console.warn("NOM NO OK");
+        if (this.last.length < 2) {
+            this.$error = true;
+            document.getElementById('last').style.borderColor = "red";
+            document.getElementById('last-error').textContent = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
         }
 
         //Email
-        if (this.email.match(this.emailRegex)) {
-            console.log("EMAIL OK");
-            this.$number++;
-        } else {
-            console.warn("EMAIL NO OK");
+        if (!this.email.match(this.emailRegex)) {
+            this.$error = true;
+            document.getElementById('email').style.borderColor = "red";
+            document.getElementById('email-error').textContent = "Veuillez entrer une email valide.";
         }
 
         //Anniv
-        console.log(this.birthdate)
-        if (this.birthdate.match(this.birthdateRegex)) {
-            console.log("ANNIV OK");
-            this.$number++;
-        } else {
-            console.warn("ANNIV NO OK");
+        if (!this.birthdate.match(this.birthdateRegex)) {
+            this.$error = true;
+            document.getElementById('birthdate').style.borderColor = "red";
+            document.getElementById('birthdate-error').textContent = "Veuillez entrer une date de naissance.";
         }
 
         //Concour
-        if (this.quantity) {
-            console.log("CONCOUR OK");
-            this.$number++;
-        } else {
-            console.warn("CONCOUR NO OK");
+        if (!this.quantity) {
+            this.$error = true;
+            document.getElementById('quantity').style.borderColor = "red";
+            document.getElementById('quantity-error').textContent = "Veuillez entrer une quantitée.";
         }
 
         //Location
-        if (this.location) {
-            console.log("LOCATION OK");
-            this.$number++;
-        } else {
-            console.warn("LOCATION NO OK");
+        if (!this.location) {
+            this.$error = true;
+            document.getElementById('location-error').textContent = "Veuillez selectionez une ville.";
         }
 
         //CGU
-        if (this.cgu) {
-            console.log("CGU OK");
-            this.$number++;
-        } else {
-            console.warn("CGU NO OK");
+        if (!this.cgu) {
+            this.$error = true;
+            document.getElementById('cgu').style.borderColor = "red";
+            document.getElementById('cgu-error').textContent = "Vous devez accepter les CGU.";
         }
-        console.log("------------")
 
         //El verifation
-        if (this.$number >= 7){
-            console.log("TOUT TOUT BIEN");
-        } else {
-            this.$number = 0;
-            console.log("TOUT TOUT PA BIEN");
+        if (!this.$error){
+            document.getElementById('form').style.display = "none";
+            document.getElementById('success').textContent = "Merci d'avoir soumis vos informations d'inscription";
         }
     }
 }

@@ -17,6 +17,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
+    document.getElementById('form').style.display = "block";
     modalbg.style.display = "block";
 }
 
@@ -29,15 +30,15 @@ function CloseModal() {
 }
 
 //Verified elements
-function validate(){
-    document.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        let $form = new Form();
-        $form.verifiedElements();
-
-    })
+function validate() {
+    let $form = new Form();
+    $form.verifiedElements();
 }
 
-console.clear();
+const form = document.getElementById("form");
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    validate();
+});
+
 
