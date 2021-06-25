@@ -5,6 +5,7 @@ class Form {
     constructor() {
         this.form = document.querySelector('form');
 
+        //Get value input
         this.first = this.form.elements.first.value.trim();
         this.last = this.form.elements.last.value.trim();
         this.email = this.form.elements.email.value;
@@ -20,59 +21,88 @@ class Form {
 
     verifiedElements() {
         this.$error = false;
-        // Boucle de reset error
-        //PRENOM
+        //Check firstname
         if (this.first.length < 2) {
             this.$error = true;
-            document.getElementById('first').style.borderColor = "red";
-            document.getElementById('first-error').textContent = "Veuillez entrer 2 caractères ou plus pour le champ du Prénom.";
+            this.addError('first', 'Veuillez entrer 2 caractères ou plus pour le champ du Prénom.');
+        } else {
+            this.removeError('first');
         }
 
-        //NOM
+        //Check lastname
         if (this.last.length < 2) {
             this.$error = true;
             document.getElementById('last').style.borderColor = "red";
             document.getElementById('last-error').textContent = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+        } else {
+            document.getElementById('last').style.borderColor = "white";
+            document.getElementById('last-error').textContent = "";
         }
 
-        //Email
+        //Check email
         if (!this.email.match(this.emailRegex)) {
             this.$error = true;
             document.getElementById('email').style.borderColor = "red";
-            document.getElementById('email-error').textContent = "Veuillez entrer une email valide.";
+            document.getElementById('email-error').textContent = "Veuillez entrer un e-mail valide.";
+        } else {
+            document.getElementById('email').style.borderColor = "white";
+            document.getElementById('email-error').textContent = "";
         }
 
-        //Anniv
+        //Check birthdate
         if (!this.birthdate.match(this.birthdateRegex)) {
             this.$error = true;
             document.getElementById('birthdate').style.borderColor = "red";
             document.getElementById('birthdate-error').textContent = "Veuillez entrer une date de naissance.";
+        } else {
+            document.getElementById('birthdate').style.borderColor = "white";
+            document.getElementById('birthdate-error').textContent = "";
         }
 
-        //Concour
+        //Check quantity
         if (!this.quantity) {
             this.$error = true;
             document.getElementById('quantity').style.borderColor = "red";
-            document.getElementById('quantity-error').textContent = "Veuillez entrer une quantitée.";
+            document.getElementById('quantity-error').textContent = "Veuillez entrer une quantité.";
+        } else {
+            document.getElementById('quantity').style.borderColor = "white";
+            document.getElementById('quantity-error').textContent = "";
         }
 
-        //Location
+        //Check location
         if (!this.location) {
             this.$error = true;
-            document.getElementById('location-error').textContent = "Veuillez selectionez une ville.";
+            this.addError('location', 'Veuillez sélectionner une ville.', false)
+        } else {
+            this.removeError('location', false);
         }
 
-        //CGU
+        //Check CGU
         if (!this.cgu) {
             this.$error = true;
-            document.getElementById('cgu').style.borderColor = "red";
             document.getElementById('cgu-error').textContent = "Vous devez accepter les CGU.";
+        } else {
+            document.getElementById('cgu-error').textContent = "";
         }
 
-        //El verifation
+        //Check if error is false
         if (!this.$error){
             document.getElementById('form').style.display = "none";
-            document.getElementById('success').textContent = "Merci d'avoir soumis vos informations d'inscription";
+            document.getElementById('success').style.display = "flex";
         }
+    }
+
+    addError(name, message, border = true){
+        if (border){
+            document.getElementById(name).style.borderColor = "red";
+        }
+        document.getElementById(`${name}-error`).textContent = message;
+    }
+
+    removeError(name, border = true){
+        if (border){
+            document.getElementById(name).style.borderColor = "white";
+        }
+        document.getElementById(`${name}-error`).textContent = "";
     }
 }

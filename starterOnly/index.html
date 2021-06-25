@@ -56,7 +56,6 @@
         <div class="content">
             <span class="close"></span>
             <div class="modal-body">
-                <h2 id="success"></h2>
                 <form id="form" name="reserve" action="index.html" method="get">
                     <div class="formData">
                         <label>Prénom</label><br>
@@ -132,8 +131,12 @@
                         </label>
                         <br>
                     </div>
-                    <input class="btn-submit button" type="submit" value="C'est parti"/>
+                    <button class="btn-submit button" type="submit">C'est parti</button>
                 </form>
+                <div id="success">
+                    <p>Merci d'avoir soumis vos informations d'inscription</p>
+                    <button class="btn-submit button" id="close-modal">Fermer</button>
+                </div>
             </div>
         </div>
     </div>

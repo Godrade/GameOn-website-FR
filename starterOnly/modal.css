@@ -14,7 +14,6 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -93,22 +92,6 @@ img {
   }
 }
 
-
-@media screen and (max-width: 1105px) {
-  .topnav a {
-    font-size: 17px;
-  }
-}
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
 
 main {
   font-size: 130%;
@@ -193,6 +176,7 @@ main {
 }
 
 .modal-body {
+  min-height: 734px;
   padding: 15px 8%;
   margin: 15px auto;
 }
@@ -208,6 +192,9 @@ input {
   padding: 8px;
   border: 0.8px solid #ccc;
   outline: none;
+}
+input:invalid {
+  background-color: #ffdddd;
 }
 .text-control {
   margin: 0;
@@ -445,7 +432,7 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: normal;
   white-space: nowrap;
 }
@@ -488,6 +475,12 @@ footer {
   margin: 0 20px;
 }
 @media screen and (max-width: 800px) {
+  main {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 1px 10px 15px;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -504,12 +497,12 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     white-space: normal;
   }
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   .hero-img img {
     border-radius: 10px;
@@ -525,6 +518,70 @@ footer {
     text-align: center;
   }
 }
+
+@media screen and (max-width: 1105px) {
+  .topnav a {
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -15px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .open-modal {
+    position: fixed;
+  }
+
+  .content {
+    margin: 0;
+    height: calc(100vh - 80px);
+    position: relative;
+    overflow-y: hidden;
+    border-radius: 0;
+    top: 80px;
+  }
+
+  #success {
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #success p {
+    font-size: 36px;
+    font-weight: normal;
+  }
+
+  #success button {
+    position: absolute;
+    bottom: 20px;
+  }
+
+  .modal-body {
+    margin: 66px auto;
+  }
+
+  .topnav {
+    z-index: 9;
+    background-color: white;
+    margin: 0;
+    padding: 1.5rem;
+  }
+
+  .header-logo img {
+    width: 200px;
+  }
+}
+
 
 @keyframes modalopen {
   from {
