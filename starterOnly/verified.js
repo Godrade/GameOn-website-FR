@@ -1,4 +1,4 @@
-//Création de la class
+//Create class
 class Form {
     $error;
 
@@ -6,8 +6,8 @@ class Form {
         this.form = document.querySelector('form');
 
         //Get value input
-        this.first = this.form.elements.first.value.trim();
-        this.last = this.form.elements.last.value.trim();
+        this.firstName = this.form.elements.firstName.value.trim();
+        this.lastName = this.form.elements.lastName.value.trim();
         this.email = this.form.elements.email.value;
         this.birthdate = this.form.elements.birthdate.value;
         this.quantity = Number(this.form.elements.quantity.value);
@@ -22,51 +22,43 @@ class Form {
     verifiedElements() {
         this.$error = false;
         //Check firstname
-        if (this.first.length < 2) {
+        if (this.firstName.length < 2) {
             this.$error = true;
-            this.addError('first', 'Veuillez entrer 2 caractères ou plus pour le champ du Prénom.');
+            this.addError('firstName', 'Veuillez entrer 2 caractères ou plus pour le champ du Prénom.');
         } else {
-            this.removeError('first');
+            this.removeError('firstName');
         }
 
         //Check lastname
-        if (this.last.length < 2) {
+        if (this.lastName.length < 2) {
             this.$error = true;
-            document.getElementById('last').style.borderColor = "red";
-            document.getElementById('last-error').textContent = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+            this.addError('lastName', 'Veuillez entrer 2 caractères ou plus pour le champ du nom.');
         } else {
-            document.getElementById('last').style.borderColor = "white";
-            document.getElementById('last-error').textContent = "";
+            this.removeError('lastName');
         }
 
         //Check email
         if (!this.email.match(this.emailRegex)) {
             this.$error = true;
-            document.getElementById('email').style.borderColor = "red";
-            document.getElementById('email-error').textContent = "Veuillez entrer un e-mail valide.";
+            this.addError('email', 'Veuillez entrer un e-mail valide.');
         } else {
-            document.getElementById('email').style.borderColor = "white";
-            document.getElementById('email-error').textContent = "";
+            this.removeError('email');
         }
 
         //Check birthdate
         if (!this.birthdate.match(this.birthdateRegex)) {
             this.$error = true;
-            document.getElementById('birthdate').style.borderColor = "red";
-            document.getElementById('birthdate-error').textContent = "Veuillez entrer une date de naissance.";
+            this.addError('birthdate', 'Veuillez entrer une date de naissance.');
         } else {
-            document.getElementById('birthdate').style.borderColor = "white";
-            document.getElementById('birthdate-error').textContent = "";
+            this.removeError('birthdate');
         }
 
         //Check quantity
         if (!this.quantity) {
             this.$error = true;
-            document.getElementById('quantity').style.borderColor = "red";
-            document.getElementById('quantity-error').textContent = "Veuillez entrer une quantité.";
+            this.addError('quantity', 'Veuillez entrer une quantité.');
         } else {
-            document.getElementById('quantity').style.borderColor = "white";
-            document.getElementById('quantity-error').textContent = "";
+            this.removeError('quantity');
         }
 
         //Check location
@@ -92,17 +84,19 @@ class Form {
         }
     }
 
-    addError(name, message, border = true){
+    //Add error message
+    addError(id, message, border = true){
         if (border){
-            document.getElementById(name).style.borderColor = "red";
+            document.getElementById(id).style.borderColor = "red";
         }
-        document.getElementById(`${name}-error`).textContent = message;
+        document.getElementById(`${id}-error`).textContent = message;
     }
 
-    removeError(name, border = true){
+    //Remove error message
+    removeError(id, border = true){
         if (border){
-            document.getElementById(name).style.borderColor = "white";
+            document.getElementById(id).style.borderColor = "white";
         }
-        document.getElementById(`${name}-error`).textContent = "";
+        document.getElementById(`${id}-error`).textContent = "";
     }
 }
